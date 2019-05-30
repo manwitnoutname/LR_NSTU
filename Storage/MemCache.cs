@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Lr1WebApi.Models;
+using ISWebApp.Models;
 
 namespace ISWebApp.Storage
 {
@@ -17,14 +17,14 @@ namespace ISWebApp.Storage
             {
                 lock (_sync)
                 {
-                    if (!Has(id)) throw new IncorrectLabDataException($"No LabData with id {id}");
+                    if (!Has(id)) throw new IncorrectLabDataException($"No PersonModel with id {id}");
 
                     return _memCache.Single(x => x.Id == id);
                 }
             }
             set
             {
-                if (id == Guid.Empty) throw new IncorrectLabDataException("Cannot request LabData with an empty id");
+                if (id == Guid.Empty) throw new IncorrectLabDataException("Cannot request PersonModel with an empty id");
 
                 lock (_sync)
                 {

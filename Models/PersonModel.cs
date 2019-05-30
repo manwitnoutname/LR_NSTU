@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ISWebApp.Models;
 
-namespace Lr1WebApi.Models
+namespace ISWebApp.Models
 {
     public class PersonModel
     {

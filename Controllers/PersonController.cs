@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Lr1WebApi.Models;
+using ISWebApp.Models;
 using ISWebApp.Storage;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +10,14 @@ namespace Lr1WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Produces("application/json")]
     public class PersonController : ControllerBase
-    {
-        private static IStorage<PersonModel> _memCache = new MemCache();
+    {   
+        private IStorage<PersonModel> _memCache;
+        
+        public PersonController(IStorage<PersonModel> memCache)
+        {
+            _memCache= memCache;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<PersonModel>> Get()
