@@ -18,7 +18,16 @@ namespace ISWebApp.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
-            return Ok(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
+           var versionInfo = new VersionModel
+            {
+                Company = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyCompanyAttribute>().Company,
+
+                Product = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyProductAttribute>().Product,
+
+                ProductVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
+
+            };
+            return Ok(versionInfo);
         }
     } 
 }
