@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ISWebApp.Models;
+using Serilog;
 
 namespace ISWebApp.Controllers
 {
@@ -17,7 +18,9 @@ namespace ISWebApp.Controllers
         // GET api/values
         [HttpGet]
         public ActionResult<string> Get()
-        {
+        {   Log.Information("Acquiring version info");
+            Log.Warning("Some warning");
+            Log.Error("Here comes an error");
            var versionInfo = new VersionModel
             {
                 Company = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyCompanyAttribute>().Company,
@@ -27,6 +30,9 @@ namespace ISWebApp.Controllers
                 ProductVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
 
             };
+            
+            Log.Information($"Acquired version is {versionInfo.ProductVersion}");
+            Log.Debug($"Full version info: {@versionInfo}");
             return Ok(versionInfo);
         }
     } 
