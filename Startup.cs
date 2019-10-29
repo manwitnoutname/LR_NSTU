@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ISWebApp.Models;
 using ISWebApp.Storage;
+using Serilog;
 namespace lab2
 {
     public class Startup
@@ -28,6 +29,7 @@ namespace lab2
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
+            ConfigureLogger();
 
             switch (Configuration["Storage:Type"].ToStorageEnum())
             {
@@ -59,5 +61,16 @@ namespace lab2
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+         private void ConfigureLogger()
+       {
+           var log = new LoggerConfiguration()
+               .WriteTo.Console()
+               .WriteTo.File("logs\\Labs.log", rollingInterval: RollingInterval.Day)
+               .CreateLogger();
+ 
+           Log.Logger = log;
+       }
+
+    
     }
 }

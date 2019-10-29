@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ISWebApp.Models;
 using ISWebApp.Storage;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Lr1WebApi.Controllers
 {
@@ -28,9 +29,10 @@ namespace Lr1WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<PersonModel> Get(Guid id)
         {
-            if (!_memCache.Has(id)) 
+            if (!_memCache.Has(id)) {
+            Log.Error("Person not found");
             return NotFound("Человека с таким номером анкеты нет!");
-        
+            }
             return Ok(_memCache[id]);
         }
 
