@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
    <Authors>A.Fominykh</Authors>
    <Company>https://t.me/man_without_name</Company>
-   <Product>Lab 5</Product>
+   <Product>Lab 7</Product>
    <PackageId>MyApp</PackageId>
   </PropertyGroup>
   
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.0.1">
+    <PackageReference Include="GitVersionTask" Version="5.1.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
